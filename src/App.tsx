@@ -9,6 +9,13 @@ import Profile from "./pages/Profile";
 import Explore from "./pages/Explore";
 import Create from "./pages/Create";
 import Notifications from "./pages/Notifications";
+import Communities from "./pages/Communities";
+import Friends from "./pages/Friends";
+import Watchlist from "./pages/Watchlist";
+import Settings from "./pages/Settings";
+import Wallet from "./pages/Wallet";
+import Verifier from "./pages/Verifier";
+import Drafts from "./pages/Drafts";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -27,6 +34,13 @@ const App = () => (
           <Route path="/profile" element={<Profile />} />
           <Route path="/profile/:userId" element={<Profile />} />
           <Route path="/post/:postId" element={<PostDetail />} />
+          <Route path="/communities" element={<Communities />} />
+          <Route path="/friends" element={<Friends />} />
+          <Route path="/watchlist" element={<Watchlist />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/wallet" element={<Wallet />} />
+          <Route path="/verifier" element={<Verifier />} />
+          <Route path="/drafts" element={<Drafts />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

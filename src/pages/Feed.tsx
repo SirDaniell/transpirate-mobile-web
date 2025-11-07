@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { PostCard } from "@/components/PostCard";
 import { UserCard } from "@/components/UserCard";
+import { AdBanner } from "@/components/AdBanner";
 import { BottomNav } from "@/components/BottomNav";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { getFeedPosts, mockUsers } from "@/lib/mockData";
+import { getFeedPosts, mockUsers, getAds } from "@/lib/mockData";
 import { ChevronRight } from "lucide-react";
 
 const Feed = () => {
   const [posts] = useState(getFeedPosts());
+  const [ads] = useState(getAds());
   const featuredUsers = mockUsers.slice(0, 3);
 
   return (
@@ -68,8 +70,11 @@ const Feed = () => {
         {/* Feed Posts */}
         <div className="px-4">
           <h2 className="font-semibold text-foreground mb-3">Latest Posts</h2>
-          {posts.map((post) => (
-            <PostCard key={post.post_id} post={post} />
+          {posts.map((post, index) => (
+            <>
+              <PostCard key={post.post_id} post={post} />
+              {index === 1 && ads[0] && <AdBanner ad={ads[0]} />}
+            </>
           ))}
         </div>
       </div>
