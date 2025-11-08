@@ -10,12 +10,19 @@ import Explore from "./pages/Explore";
 import Create from "./pages/Create";
 import Notifications from "./pages/Notifications";
 import Communities from "./pages/Communities";
+import CommunityDetail from "./pages/CommunityDetail";
 import Friends from "./pages/Friends";
 import Watchlist from "./pages/Watchlist";
 import Settings from "./pages/Settings";
 import Wallet from "./pages/Wallet";
 import Verifier from "./pages/Verifier";
 import Drafts from "./pages/Drafts";
+import Messages from "./pages/Messages";
+import Bookmarks from "./pages/Bookmarks";
+import Trending from "./pages/Trending";
+import Search from "./pages/Search";
+import Leaderboard from "./pages/Leaderboard";
+import Analytics from "./pages/Analytics";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -35,12 +42,19 @@ const App = () => (
           <Route path="/profile/:userId" element={<Profile />} />
           <Route path="/post/:postId" element={<PostDetail />} />
           <Route path="/communities" element={<Communities />} />
+          <Route path="/community/:communityId" element={<CommunityDetail />} />
           <Route path="/friends" element={<Friends />} />
           <Route path="/watchlist" element={<Watchlist />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/wallet" element={<Wallet />} />
           <Route path="/verifier" element={<Verifier />} />
           <Route path="/drafts" element={<Drafts />} />
+          <Route path="/messages" element={<Messages />} />
+          <Route path="/bookmarks" element={<Bookmarks />} />
+          <Route path="/trending" element={<Trending />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/leaderboard" element={<Leaderboard />} />
+          <Route path="/analytics" element={<Analytics />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

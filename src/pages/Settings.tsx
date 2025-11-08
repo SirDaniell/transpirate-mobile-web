@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowLeft, Moon, Sun, Bell, Lock, User, FileText } from "lucide-react";
+import { ArrowLeft, Moon, Sun, Bell, Lock, User, FileText, MessageCircle, Bookmark, TrendingUp, Search, Trophy, BarChart3 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
@@ -144,19 +144,35 @@ const Settings = () => {
           </h2>
           <Card className="p-4">
             <div className="space-y-3">
-              <Button
-                variant="ghost"
-                className="w-full justify-start"
-                onClick={() => navigate("/drafts")}
-              >
+              <Button variant="ghost" className="w-full justify-start" onClick={() => navigate("/messages")}>
+                <MessageCircle className="h-4 w-4 mr-2" />
+                Messages
+              </Button>
+              <Button variant="ghost" className="w-full justify-start" onClick={() => navigate("/bookmarks")}>
+                <Bookmark className="h-4 w-4 mr-2" />
+                Bookmarks
+              </Button>
+              <Button variant="ghost" className="w-full justify-start" onClick={() => navigate("/trending")}>
+                <TrendingUp className="h-4 w-4 mr-2" />
+                Trending
+              </Button>
+              <Button variant="ghost" className="w-full justify-start" onClick={() => navigate("/search")}>
+                <Search className="h-4 w-4 mr-2" />
+                Search
+              </Button>
+              <Button variant="ghost" className="w-full justify-start" onClick={() => navigate("/leaderboard")}>
+                <Trophy className="h-4 w-4 mr-2" />
+                Leaderboard
+              </Button>
+              <Button variant="ghost" className="w-full justify-start" onClick={() => navigate("/analytics")}>
+                <BarChart3 className="h-4 w-4 mr-2" />
+                Analytics
+              </Button>
+              <Button variant="ghost" className="w-full justify-start" onClick={() => navigate("/drafts")}>
                 <FileText className="h-4 w-4 mr-2" />
                 My Drafts
               </Button>
-              <Button
-                variant="ghost"
-                className="w-full justify-start"
-                onClick={() => navigate("/wallet")}
-              >
+              <Button variant="ghost" className="w-full justify-start" onClick={() => navigate("/wallet")}>
                 <User className="h-4 w-4 mr-2" />
                 Wallet Settings
               </Button>
