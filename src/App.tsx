@@ -16,6 +16,7 @@ import Watchlist from "./pages/Watchlist";
 import Settings from "./pages/Settings";
 import Wallet from "./pages/Wallet";
 import Verifier from "./pages/Verifier";
+import Vids from "./pages/Vids";
 import Drafts from "./pages/Drafts";
 import Messages from "./pages/Messages";
 import Bookmarks from "./pages/Bookmarks";
@@ -48,6 +49,7 @@ const App = () => (
           <Route path="/settings" element={<Settings />} />
           <Route path="/wallet" element={<Wallet />} />
           <Route path="/verifier" element={<Verifier />} />
+          <Route path="/vids" element={<Vids />} />
           <Route path="/drafts" element={<Drafts />} />
           <Route path="/messages" element={<Messages />} />
           <Route path="/bookmarks" element={<Bookmarks />} />

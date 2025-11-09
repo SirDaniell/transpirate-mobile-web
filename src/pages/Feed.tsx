@@ -1,14 +1,24 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { PostCard } from "@/components/PostCard";
 import { UserCard } from "@/components/UserCard";
 import { AdBanner } from "@/components/AdBanner";
 import { BottomNav } from "@/components/BottomNav";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getFeedPosts, mockUsers, getAds } from "@/lib/mockData";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, MessageSquare, Bookmark, TrendingUp, BarChart3, Users, Settings } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Feed = () => {
+  const navigate = useNavigate();
   const [posts] = useState(getFeedPosts());
   const [ads] = useState(getAds());
   const featuredUsers = mockUsers.slice(0, 3);
@@ -22,10 +32,42 @@ const Feed = () => {
             Discover
             <span className="inline-block w-2 h-2 rounded-full bg-primary ml-2 mb-1" />
           </h1>
-          <Avatar className="h-8 w-8">
-            <AvatarImage src={mockUsers[0].avatar_url} />
-            <AvatarFallback>{mockUsers[0].username[0]}</AvatarFallback>
-          </Avatar>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Avatar className="h-8 w-8 cursor-pointer">
+                <AvatarImage src={mockUsers[0].avatar_url} />
+                <AvatarFallback>{mockUsers[0].username[0]}</AvatarFallback>
+              </Avatar>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-56 bg-card">
+              <DropdownMenuItem onClick={() => navigate("/messages")}>
+                <MessageSquare className="h-4 w-4 mr-2" />
+                Messages
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/bookmarks")}>
+                <Bookmark className="h-4 w-4 mr-2" />
+                Bookmarks
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/trending")}>
+                <TrendingUp className="h-4 w-4 mr-2" />
+                Trending
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => navigate("/analytics")}>
+                <BarChart3 className="h-4 w-4 mr-2" />
+                Analytics
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/leaderboard")}>
+                <Users className="h-4 w-4 mr-2" />
+                Leaderboard
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => navigate("/settings")}>
+                <Settings className="h-4 w-4 mr-2" />
+                Settings
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </header>
 
@@ -67,15 +109,36 @@ const Feed = () => {
           </div>
         </div>
 
-        {/* Feed Posts */}
+        {/* Feed Posts with Tabs */}
         <div className="px-4">
-          <h2 className="font-semibold text-foreground mb-3">Latest Posts</h2>
-          {posts.map((post, index) => (
-            <>
-              <PostCard key={post.post_id} post={post} />
-              {index === 1 && ads[0] && <AdBanner ad={ads[0]} />}
-            </>
-          ))}
+          <Tabs defaultValue="latest" className="w-full">
+            <TabsList className="w-full grid grid-cols-3 mb-4">
+              <TabsTrigger value="latest">Latest Posts</TabsTrigger>
+              <TabsTrigger value="trending">Trending</TabsTrigger>
+              <TabsTrigger value="newsfeed">News Feed</TabsTrigger>
+            </TabsList>
+
+            <TabsContent value="latest" className="mt-0">
+              {posts.map((post, index) => (
+                <div key={post.post_id}>
+                  <PostCard post={post} />
+                  {index === 1 && ads[0] && <AdBanner ad={ads[0]} />}
+                </div>
+              ))}
+            </TabsContent>
+
+            <TabsContent value="trending" className="mt-0">
+              {posts.slice(0, 5).map((post) => (
+                <PostCard key={post.post_id} post={post} />
+              ))}
+            </TabsContent>
+
+            <TabsContent value="newsfeed" className="mt-0">
+              {posts.slice(2, 7).map((post) => (
+                <PostCard key={post.post_id} post={post} />
+              ))}
+            </TabsContent>
+          </Tabs>
         </div>
       </div>
 
