@@ -8,7 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getFeedPosts, mockUsers, getAds } from "@/lib/mockData";
-import { ChevronRight, MessageSquare, Bookmark, TrendingUp, BarChart3, Users, Settings } from "lucide-react";
+import { ChevronRight, MessageSquare, Bookmark, TrendingUp, BarChart3, Users, Settings, Bell } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -32,13 +32,21 @@ const Feed = () => {
             Discover
             <span className="inline-block w-2 h-2 rounded-full bg-primary ml-2 mb-1" />
           </h1>
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Avatar className="h-8 w-8 cursor-pointer">
-                <AvatarImage src={mockUsers[0].avatar_url} />
-                <AvatarFallback>{mockUsers[0].username[0]}</AvatarFallback>
-              </Avatar>
-            </DropdownMenuTrigger>
+          <div className="flex items-center gap-3">
+            <button 
+              onClick={() => navigate("/notifications")}
+              className="relative p-2 hover:bg-accent rounded-full transition-colors"
+            >
+              <Bell className="h-5 w-5 text-foreground" />
+              <span className="absolute top-1 right-1 w-2 h-2 bg-destructive rounded-full" />
+            </button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Avatar className="h-8 w-8 cursor-pointer">
+                  <AvatarImage src={mockUsers[0].avatar_url} />
+                  <AvatarFallback>{mockUsers[0].username[0]}</AvatarFallback>
+                </Avatar>
+              </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56 bg-card">
               <DropdownMenuItem onClick={() => navigate("/messages")}>
                 <MessageSquare className="h-4 w-4 mr-2" />
@@ -68,6 +76,7 @@ const Feed = () => {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+          </div>
         </div>
       </header>
 

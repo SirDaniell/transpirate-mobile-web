@@ -1,4 +1,4 @@
-import { Home, Grid3X3, PlusCircle, Bell, User, Video } from "lucide-react";
+import { Home, Grid3X3, PlusCircle, User, Video } from "lucide-react";
 import { NavLink } from "./NavLink";
 import { cn } from "@/lib/utils";
 
@@ -8,7 +8,6 @@ export const BottomNav = () => {
     { icon: Grid3X3, label: "Explore", path: "/explore" },
     { icon: PlusCircle, label: "Create", path: "/create" },
     { icon: Video, label: "Vids", path: "/vids" },
-    { icon: Bell, label: "Notifications", path: "/notifications" },
     { icon: User, label: "Profile", path: "/profile" },
   ];
 
