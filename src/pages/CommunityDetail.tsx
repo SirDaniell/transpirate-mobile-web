@@ -1,16 +1,25 @@
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { ArrowLeft, Users, Lock, MoreVertical, PlusCircle } from "lucide-react";
+import { ArrowLeft, Users, Lock, MoreVertical, PlusCircle, Share2, Link2, Flag, BellOff, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { PostCard } from "@/components/PostCard";
 import { UserCard } from "@/components/UserCard";
 import { mockCommunities, mockPosts, mockUsers } from "@/lib/mockData";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useToast } from "@/hooks/use-toast";
 
 const CommunityDetail = () => {
   const navigate = useNavigate();
   const { communityId } = useParams();
+  const { toast } = useToast();
   const community = mockCommunities.find(c => c.community_id === communityId) || mockCommunities[0];
   const [isMember, setIsMember] = useState(community.is_member);
 
@@ -28,9 +37,56 @@ const CommunityDetail = () => {
           >
             <ArrowLeft className="h-6 w-6" />
           </Button>
-          <Button variant="ghost" size="icon">
-            <MoreVertical className="h-5 w-5" />
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon">
+                <MoreVertical className="h-5 w-5" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={() => {
+                navigator.clipboard.writeText(window.location.href);
+                toast({ title: "Link copied to clipboard" });
+              }}>
+                <Link2 className="h-4 w-4 mr-2" />
+                Copy Link
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => {
+                toast({ title: "Community shared" });
+              }}>
+                <Share2 className="h-4 w-4 mr-2" />
+                Share Community
+              </DropdownMenuItem>
+              {isMember && (
+                <>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => {
+                    toast({ title: "Notifications muted" });
+                  }}>
+                    <BellOff className="h-4 w-4 mr-2" />
+                    Mute Notifications
+                  </DropdownMenuItem>
+                  <DropdownMenuItem 
+                    onClick={() => {
+                      setIsMember(false);
+                      toast({ title: "Left community" });
+                    }}
+                    className="text-destructive"
+                  >
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Leave Community
+                  </DropdownMenuItem>
+                </>
+              )}
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => {
+                toast({ title: "Community reported" });
+              }}>
+                <Flag className="h-4 w-4 mr-2" />
+                Report Community
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </header>
 

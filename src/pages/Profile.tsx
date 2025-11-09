@@ -1,17 +1,27 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, MoreVertical, Grid3X3, Bookmark } from "lucide-react";
+import { ArrowLeft, MoreVertical, Grid3X3, Bookmark, Share2, Link2, Flag, Ban, Settings } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BottomNav } from "@/components/BottomNav";
 import { getUserById, mockUsers, getFeedPosts } from "@/lib/mockData";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useToast } from "@/hooks/use-toast";
 
 const Profile = () => {
   const { userId } = useParams();
   const navigate = useNavigate();
+  const { toast } = useToast();
   const user = userId ? getUserById(userId) : mockUsers[0];
   const [posts] = useState(getFeedPosts().slice(0, 9));
+  const isOwnProfile = !userId || userId === mockUsers[0].user_id;
 
   if (!user) {
     return (
@@ -35,9 +45,53 @@ const Profile = () => {
             <ArrowLeft className="h-6 w-6" />
           </Button>
           <h1 className="text-lg font-semibold text-foreground">{user.username}</h1>
-          <Button variant="ghost" size="icon" className="text-foreground">
-            <MoreVertical className="h-6 w-6" />
-          </Button>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon" className="text-foreground">
+                <MoreVertical className="h-6 w-6" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem onClick={() => {
+                navigator.clipboard.writeText(window.location.href);
+                toast({ title: "Link copied to clipboard" });
+              }}>
+                <Link2 className="h-4 w-4 mr-2" />
+                Copy Link
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => {
+                toast({ title: "Profile shared" });
+              }}>
+                <Share2 className="h-4 w-4 mr-2" />
+                Share Profile
+              </DropdownMenuItem>
+              {isOwnProfile ? (
+                <>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => navigate("/settings")}>
+                    <Settings className="h-4 w-4 mr-2" />
+                    Settings
+                  </DropdownMenuItem>
+                </>
+              ) : (
+                <>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => {
+                    toast({ title: "User reported" });
+                  }}>
+                    <Flag className="h-4 w-4 mr-2" />
+                    Report User
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => {
+                    toast({ title: "User blocked" });
+                  }}>
+                    <Ban className="h-4 w-4 mr-2" />
+                    Block User
+                  </DropdownMenuItem>
+                </>
+              )}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </header>
 
