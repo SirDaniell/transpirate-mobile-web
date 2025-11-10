@@ -8,7 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { getFeedPosts, mockUsers, getAds } from "@/lib/mockData";
-import { ChevronRight, MessageSquare, Bookmark, TrendingUp, BarChart3, Users, Settings, Bell } from "lucide-react";
+import { ChevronRight, MessageSquare, Bookmark, TrendingUp, BarChart3, Users, Settings, Bell, Coins, Award } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -48,6 +48,20 @@ const Feed = () => {
                 </Avatar>
               </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56 bg-card">
+              <DropdownMenuItem onClick={() => navigate("/profile")}>
+                <Users className="h-4 w-4 mr-2" />
+                My Profile
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem onClick={() => navigate("/token-wallet")}>
+                <Coins className="h-4 w-4 mr-2" />
+                Token Wallet
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate("/achievements")}>
+                <Award className="h-4 w-4 mr-2" />
+                Achievements
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
               <DropdownMenuItem onClick={() => navigate("/messages")}>
                 <MessageSquare className="h-4 w-4 mr-2" />
                 Messages

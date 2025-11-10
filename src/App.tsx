@@ -24,6 +24,10 @@ import Trending from "./pages/Trending";
 import Search from "./pages/Search";
 import Leaderboard from "./pages/Leaderboard";
 import Analytics from "./pages/Analytics";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import TokenWallet from "./pages/TokenWallet";
+import Achievements from "./pages/Achievements";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -36,6 +40,8 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Feed />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/create" element={<Create />} />
           <Route path="/notifications" element={<Notifications />} />
@@ -48,6 +54,8 @@ const App = () => (
           <Route path="/watchlist" element={<Watchlist />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/wallet" element={<Wallet />} />
+          <Route path="/token-wallet" element={<TokenWallet />} />
+          <Route path="/achievements" element={<Achievements />} />
           <Route path="/verifier" element={<Verifier />} />
           <Route path="/vids" element={<Vids />} />
           <Route path="/drafts" element={<Drafts />} />

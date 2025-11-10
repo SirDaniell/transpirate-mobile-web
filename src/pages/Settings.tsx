@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowLeft, Moon, Sun, Bell, Lock, User, FileText, MessageCircle, Bookmark, TrendingUp, Search, Trophy, BarChart3 } from "lucide-react";
+import { ArrowLeft, Moon, Sun, Bell, Lock, User, FileText, MessageCircle, Bookmark, TrendingUp, Search, Trophy, BarChart3, Coins, Award } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
@@ -144,6 +144,14 @@ const Settings = () => {
           </h2>
           <Card className="p-4">
             <div className="space-y-3">
+              <Button variant="ghost" className="w-full justify-start" onClick={() => navigate("/token-wallet")}>
+                <Coins className="h-4 w-4 mr-2" />
+                Token Wallet
+              </Button>
+              <Button variant="ghost" className="w-full justify-start" onClick={() => navigate("/achievements")}>
+                <Award className="h-4 w-4 mr-2" />
+                Achievements
+              </Button>
               <Button variant="ghost" className="w-full justify-start" onClick={() => navigate("/messages")}>
                 <MessageCircle className="h-4 w-4 mr-2" />
                 Messages

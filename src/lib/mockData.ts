@@ -15,6 +15,9 @@ export interface User {
   posts_count?: number;
   role?: AppRole;
   wallet_address?: string;
+  account_type?: 'primary' | 'alias';
+  user_type?: 'Social' | 'Trading';
+  kyc_status?: 'not_verified' | 'pending' | 'verified';
 }
 
 export interface Post {
