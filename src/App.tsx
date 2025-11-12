@@ -38,18 +38,12 @@ const queryClient = new QueryClient();
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
-    <ThirdwebProvider
-      activeChain={ACTIVE_CHAIN}
-      supportedChains={SUPPORTED_CHAINS}
-      clientId={THIRDWEB_CLIENT_ID}
-    >
-      <Web3AuthProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/dashboard" element={<Dashboard />} />
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/" element={<Feed />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -81,8 +75,6 @@ const App = () => (
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
-      </Web3AuthProvider>
-    </ThirdwebProvider>
   </QueryClientProvider>
 );
 
