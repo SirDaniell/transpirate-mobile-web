@@ -32,6 +32,9 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import TokenWallet from "./pages/TokenWallet";
 import Achievements from "./pages/Achievements";
+import Staking from "./pages/Staking";
+import GamificationProfile from "./pages/GamificationProfile";
+import AdminPanel from "./pages/AdminPanel";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -70,6 +73,9 @@ const App = () => (
           <Route path="/search" element={<Search />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/analytics" element={<Analytics />} />
+          <Route path="/staking" element={<Staking />} />
+          <Route path="/gamification" element={<GamificationProfile />} />
+          <Route path="/admin" element={<AdminPanel />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

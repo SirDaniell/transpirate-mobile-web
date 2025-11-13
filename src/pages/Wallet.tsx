@@ -272,7 +272,7 @@ const Wallet = () => {
                 </DialogContent>
               </Dialog>
 
-              <Button variant="outline" onClick={() => navigate("/token-wallet")}>
+              <Button variant="outline" onClick={() => navigate("/staking")}>
                 <Download className="h-4 w-4 mr-2" />
                 Staking
               </Button>

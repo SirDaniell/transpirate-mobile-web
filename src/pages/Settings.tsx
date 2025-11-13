@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowLeft, Moon, Sun, Bell, Lock, User, FileText, MessageCircle, Bookmark, TrendingUp, Search, Trophy, BarChart3, Coins, Award } from "lucide-react";
+import { ArrowLeft, Moon, Sun, Bell, Lock, User, FileText, MessageCircle, Bookmark, TrendingUp, Search, Trophy, BarChart3, Coins, Award, Shield } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
@@ -183,6 +183,10 @@ const Settings = () => {
               <Button variant="ghost" className="w-full justify-start" onClick={() => navigate("/wallet")}>
                 <User className="h-4 w-4 mr-2" />
                 Wallet Settings
+              </Button>
+              <Button variant="ghost" className="w-full justify-start" onClick={() => navigate("/admin")}>
+                <Shield className="h-4 w-4 mr-2" />
+                Admin Panel
               </Button>
             </div>
           </Card>

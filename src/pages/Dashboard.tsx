@@ -111,7 +111,7 @@ const Dashboard = () => {
         {/* Gamification Card */}
         <Card
           className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20 cursor-pointer hover:opacity-90 transition-opacity"
-          onClick={() => navigate("/achievements")}
+          onClick={() => navigate("/gamification")}
         >
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium flex items-center gap-2">
